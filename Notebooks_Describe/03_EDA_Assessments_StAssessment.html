@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3. 과제·성적 분석 (Assessments)</title>
+<style>
+pre { line-height: 125%; }
+td.linenos .normal { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #666666; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f0f0f0; }
+.highlight .c { color: #60a0b0; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #007020; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #007020 } /* Comment.Preproc */
+.highlight .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #007020 } /* Keyword.Pseudo */
+.highlight .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #902000 } /* Keyword.Type */
+.highlight .m { color: #40a070 } /* Literal.Number */
+.highlight .s { color: #4070a0 } /* Literal.String */
+.highlight .na { color: #4070a0 } /* Name.Attribute */
+.highlight .nb { color: #007020 } /* Name.Builtin */
+.highlight .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.highlight .no { color: #60add5 } /* Name.Constant */
+.highlight .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.highlight .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #007020 } /* Name.Exception */
+.highlight .nf { color: #06287e } /* Name.Function */
+.highlight .nl { color: #002070; font-weight: bold } /* Name.Label */
+.highlight .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #bb60d5 } /* Name.Variable */
+.highlight .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #40a070 } /* Literal.Number.Bin */
+.highlight .mf { color: #40a070 } /* Literal.Number.Float */
+.highlight .mh { color: #40a070 } /* Literal.Number.Hex */
+.highlight .mi { color: #40a070 } /* Literal.Number.Integer */
+.highlight .mo { color: #40a070 } /* Literal.Number.Oct */
+.highlight .sa { color: #4070a0 } /* Literal.String.Affix */
+.highlight .sb { color: #4070a0 } /* Literal.String.Backtick */
+.highlight .sc { color: #4070a0 } /* Literal.String.Char */
+.highlight .dl { color: #4070a0 } /* Literal.String.Delimiter */
+.highlight .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #4070a0 } /* Literal.String.Double */
+.highlight .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #4070a0 } /* Literal.String.Heredoc */
+.highlight .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.highlight .sx { color: #c65d09 } /* Literal.String.Other */
+.highlight .sr { color: #235388 } /* Literal.String.Regex */
+.highlight .s1 { color: #4070a0 } /* Literal.String.Single */
+.highlight .ss { color: #517918 } /* Literal.String.Symbol */
+.highlight .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #06287e } /* Name.Function.Magic */
+.highlight .vc { color: #bb60d5 } /* Name.Variable.Class */
+.highlight .vg { color: #bb60d5 } /* Name.Variable.Global */
+.highlight .vi { color: #bb60d5 } /* Name.Variable.Instance */
+.highlight .vm { color: #bb60d5 } /* Name.Variable.Magic */
+.highlight .il { color: #40a070 } /* Literal.Number.Integer.Long */
+:root {
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --text: #1f2328;
+  --text-muted: #57606a;
+  --border: #e2e5e9;
+  --accent: #2f6fed;
+  --accent-soft: #eaf1ff;
+  --code-bg: #f6f8fa;
+  --stream-bg: #fbfbfc;
+  --error-bg: #fff2f2;
+  --error-border: #e0524b;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", Roboto, sans-serif;
+  line-height: 1.7;
+}
+.layout {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 28px 18px 40px 24px;
+  border-right: 1px solid var(--border);
+  background: var(--panel);
+}
+.sidebar .brand {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.sidebar h2 { font-size: 15px; margin: 0 0 18px 0; color: var(--text); }
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 2px 0; }
+.toc a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13.5px;
+}
+.toc a:hover { background: var(--accent-soft); color: var(--accent); }
+.toc .lvl2 { padding-left: 22px; font-size: 13px; }
+.main { flex: 1; min-width: 0; padding: 40px 56px 100px 56px; }
+.hero {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafd 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px 34px;
+  margin-bottom: 22px;
+}
+.hero .kicker {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero h1 { margin: 0 0 12px 0; font-size: 25px; }
+.hero .files-badge {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.hero .intro { margin: 0; color: var(--text); font-size: 15px; line-height: 1.8; }
+.howto {
+  background: var(--panel);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+.md-cell {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px 28px;
+  margin: 16px 0;
+}
+.md-cell h1 { font-size: 21px; margin-top: 22px; padding-top: 6px; border-top: 1px solid var(--border); }
+.md-cell h1:first-child { border-top: none; margin-top: 18px; }
+.md-cell h2 { font-size: 17.5px; color: var(--accent); margin-top: 20px; }
+.md-cell h3 { font-size: 15px; }
+.md-cell p { color: var(--text); font-size: 14.5px; }
+.md-cell li { font-size: 14.5px; }
+.md-cell code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #b3261e;
+}
+.md-cell table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; }
+.md-cell table th, .md-cell table td { border: 1px solid var(--border); padding: 6px 10px; }
+.md-cell table th { background: var(--code-bg); }
+.md-cell blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 10px 0;
+  padding: 4px 16px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: 0 6px 6px 0;
+}
+/* callouts */
+.callout {
+  border-radius: 10px;
+  padding: 14px 18px 14px 18px;
+  margin: 14px 0;
+  border: 1px solid;
+  font-size: 14.5px;
+}
+.callout p { margin: 4px 0; }
+.callout p:first-of-type { margin-top: 0; }
+.callout p:last-child { margin-bottom: 0; }
+.callout-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .03em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.callout-finding { background: #eef4ff; border-color: #c6d9ff; color: #1e3a8a; }
+.callout-finding .callout-tag { background: #dbe6ff; color: #1e40af; }
+.callout-check { background: #ecfbf6; border-color: #b9ecda; color: #0f5132; }
+.callout-check .callout-tag { background: #cdf3e4; color: #0f5132; }
+.callout-conclusion { background: #f2effc; border-color: #d9cdf5; color: #4a2c8a; }
+.callout-conclusion .callout-tag { background: #e3d8fb; color: #4a2c8a; }
+.callout-correction { background: #fff7e8; border-color: #f6dfa8; color: #7a4d00; }
+.callout-correction .callout-tag { background: #fbe7b8; color: #7a4d00; }
+.callout-hypothesis { background: #f4f6f9; border-color: #d9dfe6; color: #33414f; }
+.callout-hypothesis .callout-tag { background: #e4e9ee; color: #33414f; }
+.callout-warning { background: #fdefee; border-color: #f5c2bd; color: #8a271f; }
+.callout-warning .callout-tag { background: #f9d9d5; color: #8a271f; }
+.callout-insight { background: #eef9fb; border-color: #bfe7ee; color: #164e5c; font-size: 13.5px; }
+.callout-insight .callout-tag { background: #d4f0f5; color: #0e5b6b; }
+.callout table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 10px 0; }
+.callout table th, .callout table td { border: 1px solid rgba(0,0,0,.12); padding: 5px 9px; }
+/* code cells */
+.code-cell {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 14px 0;
+  padding: 14px 18px 16px 18px;
+}
+.code-intro {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-style: italic;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--border);
+}
+.code-details { margin: 6px 0 12px 0; }
+.code-details summary {
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  user-select: none;
+}
+.code-details summary::-webkit-details-marker { display: none; }
+.code-details[open] summary { margin-bottom: 10px; }
+.highlight-wrap { overflow-x: auto; border-radius: 8px; }
+.highlight-wrap .highlight { margin: 0; }
+.highlight-wrap pre {
+  margin: 0;
+  padding: 14px 18px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  background: var(--code-bg) !important;
+  border-radius: 8px;
+}
+.output-area { padding: 4px 0; }
+.stream-block, .img-block, .table-wrap, .error-block { margin: 10px 0; }
+.stream-block {
+  background: var(--stream-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+  padding-top: 20px;
+}
+.stream-block .block-label {
+  position: absolute;
+  top: 4px; left: 12px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 700;
+}
+.stream-block pre {
+  margin: 0;
+  padding: 4px 14px 12px 14px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12.5px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text);
+}
+.stream-block.long pre { max-height: 320px; overflow-y: auto; }
+.stream-block.stderr { background: #fff8ec; border-color: #f0c36d; }
+.error-block {
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+.error-block .error-title {
+  font-weight: 700; color: var(--error-border); margin-bottom: 6px;
+  font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px;
+}
+.error-block pre { margin: 0; font-size: 12px; white-space: pre-wrap; color: #7a1f1a; max-height: 260px; overflow-y: auto; }
+.img-block { text-align: center; }
+.img-block img { max-width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+.table-wrap {
+  overflow-x: auto;
+  background: var(--stream-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+}
+.table-wrap table { border-collapse: collapse; font-size: 12.5px; width: 100%; }
+.table-wrap table th, .table-wrap table td { border: 1px solid var(--border); padding: 5px 10px; text-align: right; white-space: nowrap; }
+.table-wrap table th { background: var(--code-bg); color: var(--text); font-weight: 700; }
+.table-wrap table tr:hover { background: var(--accent-soft); }
+/* final summary box */
+.summary-box {
+  background: #f4f1fc;
+  border: 1px solid #d9cdf5;
+  border-radius: 14px;
+  padding: 26px 30px;
+  margin: 30px 0 10px 0;
+}
+.summary-box h2 { margin-top: 0; color: #4a2c8a; font-size: 19px; }
+.summary-box ul { margin: 10px 0 0 0; padding-left: 20px; }
+.summary-box li { margin: 8px 0; font-size: 14.5px; color: #33234f; }
+.footer-note { text-align: center; color: var(--text-muted); font-size: 12px; margin-top: 40px; }
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { padding: 24px 16px 60px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="brand">OULAD 데이터 교육자료</div>
+    <h2>03_EDA_Assessments_StAssessment</h2>
+    <ul class="toc">
+      <li class="lvl1"><a href="#assessments-분석">Assessments 분석</a></li>
+      <li class="lvl1"><a href="#1-데이터-불러오기">1. 데이터 불러오기</a></li>
+      <li class="lvl2"><a href="#1-assessmentscsv-교수님의-과제-계획서">1. assessments.csv : 교수님의 과제 계획서</a></li>
+      <li class="lvl2"><a href="#2-studentassessmentcsv-수강생들의-실제-성적표">2. studentAssessment.csv : 수강생들의 실제 성적표</a></li>
+      <li class="lvl1"><a href="#2-label-churn-정의-이전-노트북과-동일한-기준">2. label_churn 정의 (이전 노트북과 동일한 기준)</a></li>
+      <li class="lvl1"><a href="#3-데이터-품질-검증">3. 데이터 품질 검증</a></li>
+      <li class="lvl1"><a href="#4-제출-지연일수delay-days-파생-변수-생성">4. 제출 지연일수(delay_days) 파생 변수 생성</a></li>
+      <li class="lvl1"><a href="#5-완수이탈-그룹별-점수제출-패턴-비교-핵심-분석">5. 완수/이탈 그룹별 점수·제출 패턴 비교 (핵심 분석)</a></li>
+    </ul>
+  </nav>
+  <main class="main">
+    <div class="hero">
+      <div class="kicker">처음 보는 사람을 위한 설명</div>
+      <h1>3. 과제·성적 분석 (Assessments)</h1>
+      <div class="files-badge">사용 파일: assessments.csv · 206행  /  studentAssessment.csv · 173,912행</div>
+      <p class="intro">assessments.csv(과제 계획서)와 studentAssessment.csv(실제 제출 기록) 두 테이블로 '과제를 잘 챙기는 것이 이탈과 관련 있는가'를 확인합니다. 본격 분석에 앞서 이월 점수(is_banked) 플레이스홀더, 성적 미반영 연습 문제(weight=0) 같은 데이터 함정을 먼저 걸러내고, 완수/이탈 그룹의 점수·제출 지연·제출률을 비교합니다. 특히 제출률 비교에서는 '이탈 학생이라 원래 안 낸 것'처럼 보이는 수치에 <strong>탈퇴 이후 마감된 과제까지 섞여 있었다는 편향</strong>을 직접 찾아내 보정하는 과정이 이 노트북의 핵심입니다.</p>
+    </div>
+    <div class="howto">코드는 기본적으로 접혀 있습니다. <strong>"코드 보기"</strong>를 클릭하면 실제 파이썬 코드를 확인할 수 있습니다. 색이 있는 박스는 분석 과정에서 나온 발견·결론·주의사항을 표시합니다.</div>
+    <div class="md-cell"><h1 id="assessments-분석">Assessments 분석</h1></div>
+<div class="code-cell" id="cell-1">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1"># 폰트 테마 설정</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+<span class="c1"># 한글 폰트 설정 (맑은 고딕) — set_theme 이후에 지정해야 덮어쓰이지 않음</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Malgun Gothic&quot;</span><span class="p">)</span>
+<span class="c1"># 마이너스 기호 깨짐 방지</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.unicode_minus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+  </details>
+  
+  
+</div>
+<div class="md-cell"><h1 id="1-데이터-불러오기">1. 데이터 불러오기</h1></div>
+<div class="code-cell" id="cell-2">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="n">assess</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../CSV_files/assessments.csv&quot;</span><span class="p">)</span>
+<span class="n">st_assess</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../CSV_files/studentAssessment.csv&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st_assess</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>  code_module code_presentation  id_assessment assessment_type   date  weight
+0         AAA             2013J           1752             TMA   19.0    10.0
+1         AAA             2013J           1753             TMA   54.0    20.0
+2         AAA             2013J           1754             TMA  117.0    20.0
+3         AAA             2013J           1755             TMA  166.0    20.0
+4         AAA             2013J           1756             TMA  215.0    30.0
+   id_assessment  id_student  date_submitted  is_banked  score
+0           1752       11391              18          0   78.0
+1           1752       28400              22          0   70.0
+2           1752       31604              17          0   72.0
+3           1752       32885              26          0   69.0
+4           1752       38053              19          0   79.0
+</pre></div></div>
+  
+</div>
+<div class="code-cell" id="cell-3">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st_assess</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block long"><span class="block-label">Output</span><pre>&lt;class &#x27;pandas.DataFrame&#x27;&gt;
+RangeIndex: 206 entries, 0 to 205
+Data columns (total 6 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   code_module        206 non-null    str    
+ 1   code_presentation  206 non-null    str    
+ 2   id_assessment      206 non-null    int64  
+ 3   assessment_type    206 non-null    str    
+ 4   date               195 non-null    float64
+ 5   weight             206 non-null    float64
+dtypes: float64(2), int64(1), str(3)
+memory usage: 9.8 KB
+None
+&lt;class &#x27;pandas.DataFrame&#x27;&gt;
+RangeIndex: 173912 entries, 0 to 173911
+Data columns (total 5 columns):
+ #   Column          Non-Null Count   Dtype  
+---  ------          --------------   -----  
+ 0   id_assessment   173912 non-null  int64  
+ 1   id_student      173912 non-null  int64  
+ 2   date_submitted  173912 non-null  int64  
+ 3   is_banked       173912 non-null  int64  
+ 4   score           173739 non-null  float64
+dtypes: float64(1), int64(4)
+memory usage: 6.6 MB
+None
+</pre></div></div>
+  
+</div>
+<div class="code-cell" id="cell-4">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st_assess</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block long"><span class="block-label">Output</span><pre>       id_assessment        date      weight
+count     206.000000  195.000000  206.000000
+mean    26473.975728  145.005128   20.873786
+std     10098.625521   76.001119   30.384224
+min      1752.000000   12.000000    0.000000
+25%     15023.250000   71.000000    0.000000
+50%     25364.500000  152.000000   12.500000
+75%     34891.750000  222.000000   24.250000
+max     40088.000000  261.000000  100.000000
+       id_assessment    id_student  date_submitted      is_banked  \
+count  173912.000000  1.739120e+05   173912.000000  173912.000000   
+mean    26553.803556  7.051507e+05      116.032942       0.010977   
+std      8829.784254  5.523952e+05       71.484148       0.104194   
+min      1752.000000  6.516000e+03      -11.000000       0.000000   
+25%     15022.000000  5.044290e+05       51.000000       0.000000   
+50%     25359.000000  5.852080e+05      116.000000       0.000000   
+75%     34883.000000  6.344980e+05      173.000000       0.000000   
+max     37443.000000  2.698588e+06      608.000000       1.000000   
+
+               score  
+count  173739.000000  
+mean       75.799573  
+std        18.798107  
+min         0.000000  
+25%        65.000000  
+50%        80.000000  
+75%        90.000000  
+max       100.000000  
+</pre></div></div>
+  
+</div>
+<div class="code-cell" id="cell-5">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st_assess</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>code_module           0
+code_presentation     0
+id_assessment         0
+assessment_type       0
+date                 11
+weight                0
+dtype: int64
+id_assessment       0
+id_student          0
+date_submitted      0
+is_banked           0
+score             173
+dtype: int64
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><h2 id="1-assessmentscsv-교수님의-과제-계획서">1. assessments.csv : 교수님의 과제 계획서</h2>
+<ul>
+<li>code_module / code_presentation: 우리가 이미 마스터한 과목 코드(예: AAA)와 학기 정보(예: 2013J)예요.</li>
+</ul>
+<ul>
+<li>id_assessment (과제 고유 번호): 과제 시험지마다 붙어 있는 ID</li>
+</ul>
+<ul>
+<li>assessment_type (과제 유형): 과제의 종류예요. TMA는 튜터(선생님)가 직접 채점하는 리포트, CMA는 컴퓨터가 자동으로 채점하는 온라인 퀴즈, Exam은 최종 시험을 뜻해요.</li>
+</ul>
+<ul>
+<li>date (과제 마감일): 학기가 정식 시작하고 몇 일째 되는 날까지 과제를 내야 하는지 기준일</li>
+</ul>
+<ul>
+<li>weight (성적 반영 비율): 이 과제가 최종 학점에 몇 %나 반영되는지 나타내는 배점 가중치</li>
+</ul></div>
+<div class="md-cell"><h2 id="2-studentassessmentcsv-수강생들의-실제-성적표">2. studentAssessment.csv : 수강생들의 실제 성적표</h2>
+<ul>
+<li>id_assessment / id_student: 어떤 학생(id_student)이 어떤 과제 시험지(id_assessment)를 냈는지 확인하는 연결고리에요.</li>
+</ul>
+<ul>
+<li>date_submitted (실제 제출일): 학생이 실제로 과제 버튼을 누른 날짜예요. 교수님의 마감일(date)보다 숫자가 크면 지연 제출</li>
+</ul>
+<ul>
+<li>is_banked (점수 이월 여부): 1이면 예전에 낙제했다가 재수강하면서 과거에 잘 받아둔 과제 점수를 그대로 인정받아 이월했다는 뜻, 0이면 이번 학기에 새로 제출했다는 뜻.</li>
+</ul>
+<ul>
+<li>score (과제 점수): 0점부터 100점까지 수강생이 실제로 획득한 점수.</li>
+</ul></div>
+<div class="md-cell"><h1 id="2-label-churn-정의-이전-노트북과-동일한-기준">2. label_churn 정의 (이전 노트북과 동일한 기준)</h1>
+<p>01, 02번 노트북과 이탈 기준을 통일해서 비교할 수 있도록, 여기서도 studentInfo.csv를 불러와
+동일한 규칙(Withdrawn=이탈, 나머지=완수)으로 label_churn을 만들어두고 앞으로 계속 재사용합니다.</p></div>
+<div class="code-cell" id="cell-6">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="n">info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../CSV_files/studentInfo.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># 01_Student_info_EDA.ipynb, 02_EDA_Student_Registration.ipynb와 동일한 기준입니다.</span>
+<span class="c1"># 훈련 결과가 &#39;Withdrawn&#39;이면 &quot;이탈&quot;, 나머지(Pass/Fail/Distinction)는 &quot;완수&quot;로 분류합니다.</span>
+<span class="n">info</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;final_result&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;이탈&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;Withdrawn&quot;</span> <span class="k">else</span> <span class="s2">&quot;완수&quot;</span><span class="p">)</span>
+
+<span class="c1"># 결과가 어떻게 나뉘었는지 퍼센트로 확인합니다. (이전 노트북과 같은 값(완수 0.688 / 이탈 0.312)이 나와야 정상입니다)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>label_churn
+완수    0.688
+이탈    0.312
+Name: proportion, dtype: float64
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><h1 id="3-데이터-품질-검증">3. 데이터 품질 검증</h1>
+<p>본격적으로 분석하기 전에, 두 테이블의 결측치와 특이값들이 어떤 의미인지 먼저 파악해둡니다.
+제대로 확인하지 않고 넘어가면 나중에 "제출 지연일수" 같은 파생 변수를 만들 때 결과가
+왜곡될 수 있습니다.</p></div>
+<div class="md-cell"><h3 id="3-1-assessment-type별-결측누락-확인">3-1. assessment_type별 결측/누락 확인</h3>
+<p>assessments.csv의 date(마감일) 결측 11건과, studentAssessment.csv에 제출 기록 자체가 없는
+평가가 있는지 assessment_type별로 확인합니다.</p></div>
+<div class="code-cell" id="cell-7">
+  <div class="code-intro">1) 평가 유형(TMA/CMA/Exam) 구성 확인</div>
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="c1"># 1) 평가 유형(TMA/CMA/Exam) 구성 확인</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;assessment_type 분포:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;assessment_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+
+<span class="c1"># 2) date(마감일)가 결측인 11건이 어떤 유형인지 확인</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">date 결측 11건의 assessment_type:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="p">[</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s2">&quot;assessment_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+
+<span class="c1"># 3) 참조 무결성: studentAssessment의 id_assessment가 assessments.csv에 다 있는지 확인</span>
+<span class="n">missing_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">st_assess</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">studentAssessment에만 있고 assessments엔 없는 id_assessment 수:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_ids</span><span class="p">))</span>
+
+<span class="c1"># 4) 반대로 assessments엔 있는데 studentAssessment엔 제출 기록이 하나도 없는 평가 확인</span>
+<span class="n">no_submission_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">st_assess</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">제출 기록이 하나도 없는 평가 수:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">no_submission_ids</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">assess</span><span class="p">[</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">no_submission_ids</span><span class="p">)][</span><span class="s2">&quot;assessment_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>assessment_type 분포:
+assessment_type
+TMA     106
+CMA      76
+Exam     24
+Name: count, dtype: int64
+
+date 결측 11건의 assessment_type:
+assessment_type
+Exam    11
+Name: count, dtype: int64
+
+studentAssessment에만 있고 assessments엔 없는 id_assessment 수: 0
+
+제출 기록이 하나도 없는 평가 수: 18
+assessment_type
+Exam    18
+Name: count, dtype: int64
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-check"><div class="callout-tag">확인 결과</div><p><strong>[확인 결과]</strong> date 결측 11건은 <strong>전부 Exam</strong>이고, 제출 기록이 아예 없는 평가 18건도 <strong>전부 Exam</strong>입니다
+(전체 Exam 24개 중 18개, 75%). 참조 무결성은 문제없음(0건)을 확인했습니다.</p></div>
+<p>즉 studentAssessment.csv는 사실상 <strong>TMA/CMA(과제형 평가)</strong> 위주의 데이터이고, <strong>기말시험(Exam)은
+대부분 이 파일에 기록되어 있지 않습니다.</strong> 이후 분석에서 "과제 점수/제출 패턴"을 볼 때는 이 파일이
+유효하지만, "기말 성적 전체"를 보고 싶다면 studentInfo의 final_result를 따로 참고해야 합니다.</p></div>
+<div class="md-cell"><h3 id="3-2-score-결측-173건-확인">3-2. score 결측 173건 확인</h3>
+<p>score가 비어 있는 173건이 is_banked(이월 점수)와 관련 있는지 확인합니다.</p></div>
+<div class="code-cell" id="cell-8">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;score 결측 173건의 is_banked 분포:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st_assess</span><span class="p">[</span><span class="n">st_assess</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()][</span><span class="s2">&quot;is_banked&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>score 결측 173건의 is_banked 분포:
+is_banked
+0    172
+1      1
+Name: count, dtype: int64
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-check"><div class="callout-tag">확인 결과</div><p><strong>[확인 결과]</strong> score 결측 173건 중 172건이 is_banked=0(이월이 아닌 일반 제출)입니다.
+즉 이월 점수와는 무관하고, 제출은 했지만 아직 채점(또는 기록)이 안 된 경우로 보입니다.
+전체 173,912건 중 0.1%로 비중이 아주 작아서, 분석에 큰 영향은 없습니다.</p></div></div>
+<div class="md-cell"><h3 id="3-3-is-banked와-date-submitted의-관계-확인">3-3. is_banked와 date_submitted의 관계 확인</h3>
+<p>date_submitted가 음수(마감일 이전 제출)인 2,057건이 있는데, 이 중 상당수가 실제 제출일이
+아니라 "이월 처리"를 의미하는 플레이스홀더 값은 아닌지 확인합니다.</p></div>
+<div class="code-cell" id="cell-9">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="n">neg</span> <span class="o">=</span> <span class="n">st_assess</span><span class="p">[</span><span class="n">st_assess</span><span class="p">[</span><span class="s2">&quot;date_submitted&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;date_submitted &lt; 0 인 건수:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이 중 is_banked 분포:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">neg</span><span class="p">[</span><span class="s2">&quot;is_banked&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+
+<span class="c1"># is_banked=1(이월) 레코드의 date_submitted 값이 전부 동일한지(=진짜 제출일이 아닌 placeholder인지) 확인</span>
+<span class="n">banked</span> <span class="o">=</span> <span class="n">st_assess</span><span class="p">[</span><span class="n">st_assess</span><span class="p">[</span><span class="s2">&quot;is_banked&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">is_banked=1인 레코드의 date_submitted 분포:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">banked</span><span class="p">[</span><span class="s2">&quot;date_submitted&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>date_submitted &lt; 0 인 건수: 2057
+이 중 is_banked 분포:
+is_banked
+1    1909
+0     148
+Name: count, dtype: int64
+
+is_banked=1인 레코드의 date_submitted 분포:
+count    1909.0
+mean       -1.0
+std         0.0
+min        -1.0
+25%        -1.0
+50%        -1.0
+75%        -1.0
+max        -1.0
+Name: date_submitted, dtype: float64
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-check"><div class="callout-tag">확인 결과</div><p><strong>[확인 결과]</strong> is_banked=1인 1,909건은 <strong>date_submitted가 예외 없이 전부 -1</strong>입니다(표준편차 0).
+즉 -1은 실제 제출일이 아니라 "이월 점수라서 제출일 자체가 의미 없다"는 뜻의 플레이스홀더 값입니다.</p></div>
+<p>반면 나머지 148건(음수이지만 is_banked=0)은 마감일보다 최대 11일 먼저 낸 진짜 조기 제출 기록입니다.</p>
+<div class="callout callout-conclusion"><div class="callout-tag">결론</div><p><strong>[결론 — 이후 분석에 반영할 사항]</strong>
+1. "제출 지연일수"나 "조기/지연 제출" 같은 파생 변수를 만들 때는 <strong>is_banked=1 레코드를 반드시
+   제외</strong>해야 합니다. 안 그러면 이월 점수 1,909건이 전부 "11일 조기 제출"로 잘못 계산됩니다.
+2. Exam 유형은 이 파일에서 사실상 다루기 어려우므로, 과제(TMA/CMA) 중심으로 분석을 진행합니다.
+3. score 결측(0.1%)은 무시 가능한 수준입니다.</p></div></div>
+<div class="md-cell"><h1 id="4-제출-지연일수delay-days-파생-변수-생성">4. 제출 지연일수(delay_days) 파생 변수 생성</h1>
+<p>3번에서 확인한 대로 is_banked=1(이월) 레코드와 date(마감일)가 없는(Exam) 레코드를 제외하고,
+assessments와 studentAssessment를 조인해서 "마감일 대비 며칠 만에 냈는지(delay_days)"를
+계산합니다. 양수면 지연 제출, 0 이하면 제때 또는 조기 제출입니다.</p></div>
+<div class="code-cell" id="cell-10">
+  <div class="code-intro">1) is_banked=1(이월 점수) 레코드 제외 — date_submitted가 -1로 고정된 가짜 값이기 때문</div>
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="c1"># 1) is_banked=1(이월 점수) 레코드 제외 — date_submitted가 -1로 고정된 가짜 값이기 때문</span>
+<span class="n">st_valid</span> <span class="o">=</span> <span class="n">st_assess</span><span class="p">[</span><span class="n">st_assess</span><span class="p">[</span><span class="s2">&quot;is_banked&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># 2) assessments와 조인해서 마감일(date), 배점(weight) 정보를 붙입니다.</span>
+<span class="n">merged_assess</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">st_valid</span><span class="p">,</span> <span class="n">assess</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3) date(마감일)가 없는 레코드(대부분 Exam) 제외 — 마감일이 없으면 지연 여부를 계산할 수 없습니다.</span>
+<span class="n">merged_assess</span> <span class="o">=</span> <span class="n">merged_assess</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># 4) 지연일수 계산: 실제 제출일 - 마감일. 양수=지연, 0=제때, 음수=조기 제출</span>
+<span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;delay_days&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;date_submitted&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;분석 대상 건수:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged_assess</span><span class="p">),</span> <span class="s2">&quot;/ 원본&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">st_assess</span><span class="p">),</span> <span class="s2">&quot;건&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;delay_days&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;is_late&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;delay_days&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">전체 지연 제출 비율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;is_late&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>분석 대상 건수: 169138 / 원본 173912 건
+
+count    169138.000000
+mean        -15.865382
+std          44.962846
+min        -246.000000
+25%          -6.000000
+50%          -1.000000
+75%           2.000000
+max         372.000000
+Name: delay_days, dtype: float64
+
+전체 지연 제출 비율: 29.2 %
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><h3 id="4-1-delay-days-값이-이상하게-널뛰는-이유-확인-weight0-문제">4-1. delay_days 값이 이상하게 널뛰는 이유 확인 (weight=0 문제)</h3>
+<p>delay_days 최댓값이 372일까지 나와서, 이게 진짜 이상치인지 확인해봅니다. 그런데 assessments.csv에는
+<strong>weight(배점 가중치)가 0인 평가가 56개</strong>나 있습니다 — 최종 성적에 전혀 반영되지 않는 연습용 문제라는
+뜻입니다. 이런 문제는 학생이 마감일을 신경 쓰지 않고 편할 때 풀어볼 가능성이 높으므로, weight&gt;0인
+실제 채점 대상 과제와 분리해서 봐야 합니다.</p></div>
+<div class="code-cell" id="cell-11">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight=0(연습용, 성적 미반영) 평가 개수:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">assess</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[weight=0] 지연일수 분포:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merged_assess</span><span class="p">[</span><span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s2">&quot;delay_days&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[weight&gt;0, 실제 채점 대상] 지연일수 분포:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merged_assess</span><span class="p">[</span><span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][</span><span class="s2">&quot;delay_days&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">weight 유무에 따른 지연(&gt;0) 비율 비교:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merged_assess</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">merged_assess</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="s2">&quot;delay_days&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block long"><span class="block-label">Output</span><pre>weight=0(연습용, 성적 미반영) 평가 개수: 56 / 206
+
+[weight=0] 지연일수 분포:
+count    46742.000000
+mean       -58.402786
+std         68.690036
+min       -246.000000
+25%        -98.000000
+50%        -28.000000
+75%         -5.000000
+max        372.000000
+Name: delay_days, dtype: float64
+
+[weight&gt;0, 실제 채점 대상] 지연일수 분포:
+count    122396.000000
+mean          0.379293
+std           6.078729
+min        -141.000000
+25%          -1.000000
+50%           0.000000
+75%           2.000000
+max         198.000000
+Name: delay_days, dtype: float64
+
+weight 유무에 따른 지연(&gt;0) 비율 비교:
+weight
+False    37.5
+True      7.4
+Name: delay_days, dtype: float64
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-correction"><div class="callout-tag">바로잡기</div><p><strong>[정정]</strong> 처음엔 "weight=0인 연습용 과제가 지연률을 부풀렸을 것"이라 예상했는데, 실제로는 <strong>반대</strong>였습니다.</p></div>
+<ul>
+<li><strong>weight=0(연습용)</strong>: 지연 비율 <strong>7.4%</strong>로 오히려 낮지만, 평균 -58.4일 · 표준편차 68.7일로 마감일과
+  무관하게 훨씬 일찍 풀어보거나(중앙값 -28일) 가끔 몇 달씩 늦게 복습 삼아 풀어보는 등 편차가 아주 큽니다.</li>
+<li><strong>weight&gt;0(실제 채점 대상)</strong>: 지연 비율이 오히려 <strong>37.5%</strong>로 훨씬 높고, 평균 +0.4일 · 표준편차 6.1일로
+  마감일 바로 근처(며칠 이내)에 몰려 있습니다.</li>
+</ul>
+<p>즉 실제 성적에 반영되는 과제일수록 마감일을 딱 맞춰 내려다 오히려 살짝 늦는 경우가 잦고, 성적과
+무관한 연습 문제는 늦더라도 폭이 클 뿐 "마감을 넘겼다"고 판단되는 경우 자체는 적었던 것입니다.</p>
+<div class="callout callout-conclusion"><div class="callout-tag">결론</div><p><strong>[결론]</strong> 이후 "제출 지연이 이탈과 관련 있는가"를 분석할 때는 <strong>weight &gt; 0인 과제만</strong> 사용해야
+실제 학사 일정과 관련된 의미 있는 지연 신호를 볼 수 있습니다.</p></div></div>
+<div class="md-cell"><h1 id="5-완수이탈-그룹별-점수제출-패턴-비교-핵심-분석">5. 완수/이탈 그룹별 점수·제출 패턴 비교 (핵심 분석)</h1>
+<p>지금까지 정리한 것(is_banked 제외, weight&gt;0만 사용)을 바탕으로, studentInfo의 label_churn과
+조인해서 "과제를 잘 챙기는 것이 이탈과 관련 있는가"를 직접 확인합니다. 점수, 제출 지연,
+과제 제출률(참여도) 세 가지 관점에서 봅니다.</p></div>
+<div class="code-cell" id="cell-12">
+  <div class="code-intro">label_churn을 (id_student, code_module, code_presentation) 3개 키로 조인합니다. id_student만으로 조인하면 재수강생(같은 학생이 여러 과목/학기를 들은 경우) 때문에 잘못 매칭될 수 있어 반드시 3개 키를 모두 맞춰야 합니다.</div>
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="c1"># label_churn을 (id_student, code_module, code_presentation) 3개 키로 조인합니다.</span>
+<span class="c1"># id_student만으로 조인하면 재수강생(같은 학생이 여러 과목/학기를 들은 경우) 때문에 잘못 매칭될 수 있어</span>
+<span class="c1"># 반드시 3개 키를 모두 맞춰야 합니다.</span>
+<span class="n">full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">merged_assess</span><span class="p">,</span>
+    <span class="n">info</span><span class="p">[[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;label_churn&quot;</span><span class="p">]],</span>
+    <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span>
+    <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;조인 후 label_churn 결측 수:&quot;</span><span class="p">,</span> <span class="n">full</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">full</span><span class="p">))</span>
+
+<span class="c1"># 4-1에서 확인한 대로 weight&gt;0(실제 채점 대상)만 사용합니다.</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">full</span><span class="p">[</span><span class="n">full</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>조인 후 label_churn 결측 수: 0 / 169138
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><h3 id="5-1-완수이탈-그룹별-평균-점수">5-1. 완수/이탈 그룹별 평균 점수</h3></div>
+<div class="code-cell" id="cell-13">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;label_churn&quot;</span><span class="p">)[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;label_churn&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;완수/이탈 그룹별 과제 점수 분포&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;이탈 여부&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;과제 점수&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># [해석 포인트] 이탈 그룹의 평균 점수(64.9점)가 완수 그룹(75.8점)보다 약 11점 낮습니다.</span>
+<span class="c1"># 이탈하기 전까지 제출한 과제만 놓고 봐도, 이미 성취도가 낮은 상태였다는 뜻입니다.</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>             mean  median   std   count
+label_churn                            
+완수           75.8    79.0  18.1  111183
+이탈           64.9    68.0  22.5   11049
+</pre></div><div class="img-block"><img src="data:image/png;base64,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HTsmzzzzjHfZt/VBcby7144dO4Le1xUBSZtGtBbJt+rs+PHj0qxZs5AfUx9Ha6EQP3xn0tZflb54LwDO1rVrV/niiy+8twcOHOidSXv9+vXm4tnG8e5ewTavuSYgaXWZng5Ck2GHDh28VaT8CkB11qxZI8OGDfMue0KR3Slb9wPgbPfff7/3ePcNRIH2A1w1iu3yyy+X5557ztwuLS2Vl156Sa688spoFwsxrqbwQzgC3IPjHXEZkMaPHy/btm0zvxCGDBkivXr1kgsvvDDaxYKDPzQJR4D76HGtzWi+dJnjHbaECrt3s4OdPn1a/vd//9ecS+ecc84J+XE8pynp0qVLGEsHAACiqTbf767og+SRnJxsTjMCAABQF65pYgMAAAgXAhIAAICFgAQAAGAhIAEAAFgISAAAABYCEgAAgIWABAAAYCEgAQAAWAhIAAAAbp5JO1zKyspEz8DimZIcAAA4n57MPiEhIah9CUgBBPvHAwAAzvp+D/Y73lUnqwUAAAgH+iABAABYCEgAAAAWAhIAAICFgAQAAGAhIAEAAFgISAAAABYCEgAAgIWABAAAYCEgAQAAWAhIAAAAFgISAACAhYCEuNa3b185efJktIsBoJ58//vflzNnztT6ft27dw/pfnCu5GgXAIik119/XV544QXZu3evNG/eXIYPHy433nijJCf/31u/qKhIgj1fc58+feStt96SRo0a8U8DYtC2bdtk7ty58vXXX0v79u3l9ttvl27duvntE+iYry40ff7555KUlFSrzwq4AwEJrrVixQp55ZVX5Ne//rWce+658s0338hDDz0khw4dMh+ctbFjxw5zv7/85S/Su3fviJUZQGj27Nkj48aNk5kzZ0q/fv3k448/lvHjx8vKlSvlnHPOqfa+Gn4+/fRTSUys3Kii4QjxKaGCSAyXGjZsmMybN086duzoXXfs2DEZPHiw/OlPf5KEhATzy3HDhg2SnZ1d5eMcPnxYfvazn0mHDh1k+/bt8txzz0nLli3r6VUACMZvfvMbSUlJkTvvvNO77ne/+5055u+77z7vuk6dOskXX3zhrUX2rEtLS6uy9kidd955kpGRUWk93IsaJLhWSUmJpKam+q3TD9DTp09LeXl5jR9w2jdJf32++OKLMnHiRBkxYoSsW7dOxowZIyNHjpTRo0dLw4YNI/wqAATjk08+MTXE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" loading="lazy"/></div></div>
+  <div class="callout callout-insight"><div class="callout-tag">코드 해설</div>[해석 포인트] 이탈 그룹의 평균 점수(64.9점)가 완수 그룹(75.8점)보다 약 11점 낮습니다. 이탈하기 전까지 제출한 과제만 놓고 봐도, 이미 성취도가 낮은 상태였다는 뜻입니다.</div>
+</div>
+<div class="md-cell"><h3 id="5-2-완수이탈-그룹별-제출-지연-비교">5-2. 완수/이탈 그룹별 제출 지연 비교</h3></div>
+<div class="code-cell" id="cell-14">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="n">late_summary</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;label_churn&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">지연률</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;is_late&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">),</span> <span class="n">평균지연일</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;delay_days&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">))</span>
+<span class="n">late_summary</span><span class="p">[</span><span class="s2">&quot;지연률&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">late_summary</span><span class="p">[</span><span class="s2">&quot;지연률&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">late_summary</span><span class="p">[</span><span class="s2">&quot;평균지연일&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">late_summary</span><span class="p">[</span><span class="s2">&quot;평균지연일&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">late_summary</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">late_summary</span><span class="p">[</span><span class="s2">&quot;지연률&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;salmon&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;완수/이탈 그룹별 제출 지연률(%)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;지연률(%)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># [해석 포인트] 이탈 그룹의 지연률(47.0%)이 완수 그룹(36.5%)보다 뚜렷하게 높습니다.</span>
+<span class="c1"># 평균 지연일수도 이탈 그룹이 1.71일로 완수 그룹(0.25일)의 약 7배입니다.</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>              지연률  평균지연일
+label_churn             
+완수           36.5   0.25
+이탈           47.0   1.71
+</pre></div><div class="img-block"><img src="data:image/png;base64,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aKE5Lo+QGkslVPQIxfDmn/70p2IV8AhGUY8UywRUFbV9vvON+hKQoAWoaWp/azG/Z41RWrp161b0csWyArFWVFURgiKIVv1S35jhFsOL+++/f7FWUvxedSHWGHaMocbll19+gd4PWj8BCRowvNPUw3A1Te1vzvvZnAtFNtUQW0u+n831f7Yg29iY60cBfPRK5gEphslqWvMon+FW1eWXX17M6IP6EpCgmXtCYjG/mqb2l2KPT1O2raXez5barqZsY2OvH+sWxbBgLNQaMwUb6rnnnium/m+//fYNvg1KV1l5zGEGgBYkgk0Mm8V30zXkw0OsCRXrIcX0/9Y4dE3zE5AAADL1+4poAIASICABAGQEJACATEnOYnvttdeK79fq2LFjczcFAFhAZs6cWay8vu66685z33al/O3tlKZ47uPrCfwPQOlx/Je28nq8/5dkD1JFz9Gaa67Z3E2hGUybNi2NHDmyWIG3S5cungMoIY7/0vbWW2/Ved+S7EECAKiNgAQAkBGQAAAyAhIAQEZAAgDICEgAABkBCQAgIyABAAhIAAC104MEAJARkAAAMgISAEBGQAIAyAhIAAAZAQkAICMgAQBkBCQASkZZWVnq3Llz8RNq06HWSwFoc8pnz05l7Urz83GEowEDBqRSVsrPf30ISAAlJt4cZ939l1T+9ZfN3RQWsLIll04ddtvb414HAhJACSrC0bjPmrsZLGDlHvE608cGAJARkAAABCQAgNrpQQIAyAhIAAAZAQkAICMgAQBkBCQAgIyABACQEZAAADICEgBARkACAMgISAAAGQEJACAjIAEAZAQkAICMgAQAkBGQAAAyAhIAQEZAAgDICEgAABkBCQAgIyABAGQEJACAjIAEAJARkAAAMgISAEBGQAIAyAhIAAAZAQkAICMgAQBkBCQAgIyABACQEZAAADICEgBARkACAMgISAAAGQEJACAjIAEAZAQkAICMgAQAkBGQAAAyAhIAQEZAAgDICEgAABkBCQAgIyABALSGgDRixIh09tlnz7H9o48+Sueee25xGjt2bLO0DQBo+1pkQDrrrLPSww8/XG1bBKJ99903LbLIIqmsrCzttddeacKECc3WRgCg7eqQWpg777yzxuBzzTXXpAMOOKA4hfHjx6e77747HXjggc3QSgCgLWtRPUhfffVVuvDCC9Mf/vCHOS57/vnn07bbblt5fquttkqvvPLKAm4hAFAKWkwP0syZM9Oxxx6bhg4dmvr371/tsh9++CF9++23qVevXpXbVlxxxfTZZ581+O+Vl5enadOmNarNtE7Tp0+v9hNKSZQodO7cubmbQTOL1794Hyw15eXlxTHQqgLSOeeckxZaaKF0xBFHFD1JVU2aNCl169at2raoRZo6dWqjAtnIkSMbfH1avzFjxjR3E2CBi3A0YMAAj3yJGz16dMl+SOzUqVPrCUj33HNPevrpp4v6o3bt5hz1qynlxrb27ds3+G927Ngx9e3bt8HXp/WKF4UIRyuvvLJP0pScun56pm3r3bt3SfYgjRo1qs77NntAmjhxYlFztPrqq6fzzjuv8g0seo1iqv8pp5xS9BZNnjy52vXi8h49ejTqRaJLly6Nbj+t+5O0/wGgFJXqMGtZPT4gdGgJXV15UXaEnxdffDGts846xfmFF144Lb744unjjz9OK620UrHtgw8+mKNWCQCgKXRoCSl2t912q7Zt3LhxadiwYWn77bev3LbZZpul22+/PZ144olp9uzZ6a677kqHHHJIM7QYAGjrmj0g1dVhhx2WhgwZUvQcxTpJ0ZM0ePDg5m4WANAGtciA1L1796L2qKqll1463X///emFF15IPXv2TBtssEGztQ8AaNtaZECKYbeqw2sVolh7u+22a5Y2AQClo0WtpA0A0BIISAAAGQEJACAjIAEAZAQkAICMgAQAkBGQAAAyAhIAQEZAAgDICEgAABkBCQAgIyABAGQEJACAjIAEAJARkAAAMgISAEBGQAIAyAhIAAAZAQkAICMgUXLKyspS586di58AUJMONW6lzSufPTuVtSvNfBzhaMCAAamUlfLzD1AXAlKJijfHWXf/JZV//WVzN4UFrGzJpVOH3fb2uAPUQkAqYUU4GvdZczeDBazcIw4wT/rYAQAyAhIAQEZAAgDICEgAABkBCQAgIyABAGQEJACAjIAEAJARkAAAMgISAEBGQAIAyAhIAAAZAQkAICMgAQBkBCQAgIyABACQEZAAADICEgBARkACAMgISAAAGQEJACAjIAEAZAQkAICMgAQAkBGQAAAyAhIAQEZAAgDICEgAABkBCQAgIyABAGQEJACAjIAEAJARkAAAMgISAEBGQAIAyAhIAAAZAQkAICMgAQBkBCQAgIyABACQEZAAADICEgBA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Ytr+d999V60oOz+f1yQNGjQovf/++03TWgCAlhSQKkJPLAZZNQDl5wEAWjs1SAAATRWQZs2a1dCrAgC0nYB0xx13FD9///vfpw022CBdeOGFxfkpU6bMn9YBALTkgPTII4+k888/P1166aXptNNOK+qOfvKTnxQF2tdff/38bSUAQEsMSFdffXU69dRT0zbbbJM6depUnOL3U045JT322GPzt5UAAC0xII0aNSptttlmc2yPbWPHjm3qdgEAtPxp/p07d66xMDu2xWUNWVASAKBVB6RNNtkkPfjgg2m//fartj22DR48eI4FJSvki0gCALSZgHTMMcekvffeO82YMSNttdVWxbYnn3wy3Xrrrenmm2+u3M+ikQBAyQSkFVZYoQhCl1xySRGKQkz1Hz58eFpuueXmZxsBAFpmQAorrrhiMdUfAKAt81UjAAAZAQkAICMgAQA0tAapsesb9ezZs1HXBwBocQEpX9+ovkz/BwDaXEAScACAUjFfapDKy8vnx80CALS8gFSXOqSPP/44HX300Y1pEwBA6wlIgwYNqvXy6dOnp2OPPTZtuOGGjW0XAEDrH2KbNGlSOvjgg9Nmm22W9tlnn6a6WQCA1hmQnn322TRkyJC08847G14DAErru9gq6pBmz56dvvnmm/T666+ne+65J/Xq1StdccUVaeWVV54/rQQAaMkBKdZDioA0ZcqU4meYMGFCev/99xsVkCZOnJiee+659MUXX6QlllgibbHFFmmxxRabI5w9/PDDxe877bRT6t69e4P/HgBAkw2xxXpIr7zySnrjjTfSnXfemQ477LA0efLk9Nvf/jaddtppadasWfW9ySL4bLXVVkX4iVqmp556qghiH3zwQbV99thjj/Tuu++mf/7zn+mXv/xlmjp1ar3/FgBAk/cgVejUqVNac801i1OEpAsvvDDdfPPN6auvvkqXXXZZcXl9buuWW25J/fr1q9x2ww03FLd55ZVXFuevueaaosYpZsmFww8/vBje23vvvRt6FwAAGt+DlA95VejcuXP63e9+l4YNG1b07px++un1udnUrVu3auEobLrppmn06NGV559++um0yy67VJ7fcccd00svvVSvvwMA0OQ9SPP6upFYJ+nSSy8tht8aa+zYsWnZZZctfp85c2ZRm1S1xqlPnz7FopSNWe172rRpqRSVlZUVoZbSFuuW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6tqtuVtAMyr5//9S5/gvaaV6/JeVlbWtgNS5c+c0ffr0attiJtsiiyzSoNtbd911m6hlAEBb1CpqkCIIxZpH3377beW2Tz75JPXu3btZ2wUAtE2tIiCFDTfcMD355JOV55944ok0ePDgZm0TANA2tYohtnDQQQelQw89NE2ZMiWNHz8+vf322+n0009v7mYBAG1QWXkrKmUfMWJEuvfee1PPnj3TvvvuW/wEACjpgAQAsCC0mhokAIAFRUACAMgISAAAGQEJACAjIAEAZAQkSsKLL75YfKcfUJqef/75Bn1/57PPPluyX+xa6kzzp8344osv0meffZaWXHLJtOKKK1b7QsL1118/PfXUU2nRRRetU5jaYIMNiq+3AVqHL7/8Mo0ZMyatvPLKaemll57j8gEDBqQ333yz2nEdoWn27Nk13l58U0O8hvTv3z+98847Xg9KkHcAWr3JkyenE088sVhdPV4cP//887TUUkuliy66KC277LL1uq14sTzkkEOKMBVBC2j5LrvssnTjjTem1VZbLX3wwQdpn332SUcdddQ8rxfH+qBBg2q8bJNNNinZb7zn/whItHpnn3126tWrV/EiGZ8Oozv86quvTqecckq64YYb6nVbDz/8cPrhhx/SQw89lPbbb7/51magacQQ2F133ZUefPDB4oNRfKn5kCFD0hprrJG23HLLeV4/vpUhD0IVvUcVXnjhheJ8vp22TUCi1XvppZfS8OHDK7vA4wXswAMPTJdffnmaOXNm6tixY51u54EHHkj/8z//k/785z+ns846qxiO23XXXedz64HGuPXWW4vjPcJRiK+gOvjgg9Mtt9xSp4B00003zbP3qGIfvUqlRUCi1YsXxFGjRhW9SBVGjx6dunbtWi0cRW1R586d00YbbVQZpsaOHZteffXVdNtttxVDavFzmWWWSeuuu24644wz0l//+te01157pXXWWSf16dOnWe4fMHdvvfVWOumkk6pti56eCy64oE4P21VXXTXP+qK67EPb4xmn1TvyyCPTqaeemn71q1+lvn37pk8//bSoRzjuuOOq7RefKNu3b18UbFe82D399NNp0qRJ6cwzz0yrrLJK5b6LL754+tOf/pQ++uij9Mgjj6T77rsvHXPMMQv8vgG1mzhx4hz1gnE+juu6qBg+qypeH+KDFKVNQKLV22KLLYpPeHfffXe69NJL089//vN03nnnFTPRqrrkkkvmmMUW9Qe1iV6jI444Yr60G2i87t27pylTpqQuXbpUbovzdZmxGkNmNQ2xxQepioAU+7RrZ0WcUiQg0arFsFkUVcfss5iNEiEpfsYL3HvvvZdmzJiR1l577bleN2qU6qPq8BzQ/GJo/cMPP6ysQQoxk63qkPvcxGSOuU31j+LvEJM1FGaXJq/0tGox9PXVV19Vnl9vvfXSvffeW22fK664osbrxpDb1KlTayz6jt6nCFm5qsNzQPPbcccd080335w23njjym1xfuedd67T9aMH6ccff6x1CC6WEHHclx4LRdImzGtxx/osFFmffYHmNW3atLTbbrulgQMHFrPWoufn5ZdfLnqTY6JGbQtFzmuxyHDooYcWheACUunxUZg2IRaFqy3UGBqDtilqj6I3eNiwYcV6SDHZIs5XDUcNXSyy4rVDDVJpEpAoCVGgDbRNPXr0SMcff3yDr28aPzURkGgzKtY5mhu9SEBdp/pXZQXt0iQg0SZE+Ln99ttr3aeuBdaCFLQ9c5uuP7ep/vk+ZrKVHkXaAAAZq18BAGQEJACAjIAEAJARkAAAMgISAEBGQAIAyAhIQJMYPXp0evfdd+f7dVrbbQGtk4UigSbxzDPPpM8++6z4UtD5eZ3WdltA66QHCQAgIyABAGQEJACAjBokYL6aMmVKeuutt4ov+1x33XXTQgstVON+UfPz3nvvpYUXXjitvfbaqVu3bnPsM2vWrPT6668Xt9mvX7/Uq1evRrdvwoQJaeTIkWnGjBlprbXWSosvvni1y0eNGpXGjBmTlltuuTlqkqKYe/r06fPcXnG+f//+6aWXXkodO3ZMG264YfrXv/6VZs6cmVZbbbXivn/66adpxRVXTKuuumqj7xfQOAISMN88+eST6cwzz0wrrLBCmjp1apo8eXK66667qoWf8vLydMYZZ6Rnn302rbLKKumbb74pAskf//jHtN1221Xu99FHH6UjjjgiLbrooqlnz57p7bffTnvssUc65phjGtS2aM9ZZ52VnnjiiSJsRWj58MMP0+mnn15c/uOPP6bjjjuuaMuSSy6Z3nzzzbTGGmukq666KrVv377WYu58e5z/5JNPim2zZ89OG2ywQRGQ4vEZP358EYy+/PLL4n698cYbafDgwen8889v0P0CmoaABMw30Vv0t7/9LXXv3r04f8ghh6T7778/7bXXXpX7xPnDDz88PfbYY0UvU3jxxRfTkUceWQSSCFfRcxRB6LTTTkubbLJJsU/0yAwdOjRtuummaeDAgfVu29FHH10En8cff7wIXeG7776rnN5/7733FgFq2223Lc5HuNt1112Ldm6//fb1/ntPPfVUuuSSS4peqqoiMF5wwQVps802q+zR+sUvflEExrhvQPNQgwTMNxFmIhxFuHjnnXfSIossksaOHVttnxh2+vWvf10ZjsKgQYOK3qMILxWBKXptJk6cmB588MHiFIEjwtOrr75a73bFMN0XX3xR9G5VhKOw2GKLpY022qj4fb311qsMRyHavsMOO6T333+/QY9F9I7l4SjE36sIR6FHjx7FfbcOEzQvPUjAfHPnnXema6+9tqgZinqhGNaKYaSq5lZvE7U4MdwWYngqbiOGw6qK0LTUUkvVu11R7xMBqF27uX9GjL+fi7bHMFlD1HR7c9u+xBJLpEmTJjXo7wBNQ0AC5ouo2bnmmmuKU0UIiKGk77//vtp++fkKH3/8cdG7FKJmKW7joosuapK2RSF49CDVpmqPVm1DiNOmTZtje03hpkMHL7fQmhhiA+aLGIqK2qCKcPTDDz8U9Tu5KGD+9ttvq22LguzYd+utty7O/+xnP0sjRoyocdgpipvrK4qgX3vttfTKK6/McdnXX39d59tZaaWViiG+qJGqELPhHn300Xq3CWhZfKQB5osIR+eee25RJxR1NVGsveyyy86xX58+fYpi65122qm4PMLRHXfckU4++eS0/PLLF/ssvfTSRVH13nvvnYYMGZL69u1bBJkIVxGiDjrooHq1Labyn3POOcWsuK222iqtueaaxeyyKIyOGWadOnWq0+1EcOvatWvaf//9i/qkCEdRdB71RkDrJiABTaJ3795FkXOFCAnDhg0rZoPFcNbxxx9fDKfFLK38OlEPdNttt6WXX365CEl/+ctfiqn3VUUIidD1yCOPFD0/sd8JJ5yQ1l9//Rr//rxEsIpg9MADDxRLBkTQiQC2+eabF8GrptvK/0bUMEVbo+1xGzEUGDPfxo0bV+P9zMVjFLPx6rodWHDKymMREgAAKulBAtqcWLl6btPkozcnX9gRICcgAW1OLAuQLwlQIdYcEpCAeTHEBgCQMc0fACAjIAEAZAQkAICMgAQAkBGQAAAyAhIAQEZAAgDICEgAABkBCQAgVff/AeTSt5f8zw/FAAAAAElFTkSuQmCC" loading="lazy"/></div></div>
+  <div class="callout callout-insight"><div class="callout-tag">코드 해설</div>[해석 포인트] 이탈 그룹의 지연률(47.0%)이 완수 그룹(36.5%)보다 뚜렷하게 높습니다. 평균 지연일수도 이탈 그룹이 1.71일로 완수 그룹(0.25일)의 약 7배입니다.</div>
+</div>
+<div class="md-cell"><h3 id="5-3-완수이탈-그룹별-과제-제출률참여도">5-3. 완수/이탈 그룹별 과제 제출률(참여도)</h3>
+<p>지금까지는 "제출한 과제"만 대상으로 점수/지연을 봤습니다. 이번엔 관점을 바꿔서, 학생이 애초에
+"내야 할 과제 중 몇 %를 실제로 냈는지"를 계산합니다. 아예 제출하지 않은 것까지 포함해야 진짜
+참여도를 알 수 있기 때문입니다.</p></div>
+<div class="code-cell" id="cell-15">
+  <div class="code-intro">학생별로 실제 제출한 weight&gt;0 과제 개수</div>
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="c1"># 학생별로 실제 제출한 weight&gt;0 과제 개수</span>
+<span class="n">sub_count</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;submitted_cnt&quot;</span><span class="p">)</span>
+
+<span class="c1"># 과목/학기별로 배정된 weight&gt;0 과제 개수 (=이 강좌를 들으면 원래 내야 하는 과제 수)</span>
+<span class="n">expected_cnt</span> <span class="o">=</span> <span class="n">assess</span><span class="p">[</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;expected_cnt&quot;</span><span class="p">)</span>
+
+<span class="c1"># info(수강생별 1행)를 기준으로 실제 제출 개수와 배정 개수를 붙여서 제출률을 계산합니다.</span>
+<span class="n">course_level</span> <span class="o">=</span> <span class="n">info</span><span class="p">[[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;label_churn&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">course_level</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course_level</span><span class="p">,</span> <span class="n">sub_count</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">course_level</span><span class="p">[</span><span class="s2">&quot;submitted_cnt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">course_level</span><span class="p">[</span><span class="s2">&quot;submitted_cnt&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 제출 기록이 아예 없으면 0건</span>
+<span class="n">course_level</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course_level</span><span class="p">,</span> <span class="n">expected_cnt</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">course_level</span><span class="p">[</span><span class="s2">&quot;submission_rate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">course_level</span><span class="p">[</span><span class="s2">&quot;submitted_cnt&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">course_level</span><span class="p">[</span><span class="s2">&quot;expected_cnt&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">course_level</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;label_churn&quot;</span><span class="p">)[</span><span class="s2">&quot;submission_rate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">zero_rate</span> <span class="o">=</span> <span class="n">course_level</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;label_churn&quot;</span><span class="p">)[</span><span class="s2">&quot;submission_rate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">과제를 단 하나도 내지 않은(제출률 0%) 학생 비율:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zero_rate</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">course_level</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;label_churn&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;submission_rate&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;완수/이탈 그룹별 과제 제출률(%)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;이탈 여부&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;제출률(%)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>             mean  median  count
+label_churn                     
+완수           62.3    80.0  22437
+이탈           13.6     0.0  10156
+
+과제를 단 하나도 내지 않은(제출률 0%) 학생 비율:
+label_churn
+완수    15.8
+이탈    57.4
+Name: submission_rate, dtype: float64
+</pre></div><div class="img-block"><img src="data:image/png;base64,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" loading="lazy"/></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-finding"><div class="callout-tag">발견</div><p><strong>[1차 발견 — 그런데 그대로 믿기 전에 검증이 필요합니다]</strong>
+- 완수 그룹의 평균 제출률은 62.3%(중앙값 80%)인데, <strong>이탈 그룹은 평균 13.6%, 중앙값 0%</strong>입니다.
+- <strong>제출률 0%인 학생 비율이 완수 그룹은 15.8%인데 이탈 그룹은 57.4%</strong>로, 거의 4배 차이입니다.</p></div>
+<p>다만 이 수치를 그대로 "이탈 학생은 원래 과제를 안 낸다"로 해석하면 안 됩니다. <strong>이탈 학생은
+정의상 강좌를 끝까지 듣지 않고 중간에 나간 학생</strong>입니다. expected_cnt는 강좌 전체 기간의
+과제 개수를 기준으로 계산했기 때문에, 학생이 탈퇴한 <strong>이후에 마감되는 과제</strong>까지 "안 낸 것"으로
+잡혔을 가능성이 있습니다 — 이건 게을러서가 아니라 애초에 낼 수 없었던 것이므로, 아래에서
+반드시 확인해야 합니다.</p></div>
+<div class="md-cell"><h3 id="5-4-5-3-검증-탈퇴-시점-이후-마감-과제로-인한-편향-확인">5-4. 5-3 검증 — 탈퇴 시점 이후 마감 과제로 인한 편향 확인</h3>
+<p>studentRegistration.csv의 date_unregistration(탈퇴일)을 가져와서, 이탈 학생이 "안 낸" 것으로
+잡힌 과제들의 마감일이 실제로 탈퇴일 이전(=낼 기회가 있었음)인지 이후(=낼 수 없었음)인지
+확인합니다.</p></div>
+<div class="code-cell" id="cell-16">
+  
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="n">reg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../CSV_files/studentRegistration.csv&quot;</span><span class="p">)</span>
+
+<span class="n">wd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">info</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;이탈&quot;</span><span class="p">][[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">]],</span>
+    <span class="n">reg</span><span class="p">[[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;date_unregistration&quot;</span><span class="p">]],</span>
+    <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+<span class="p">)</span>
+
+<span class="n">assess_w</span> <span class="o">=</span> <span class="n">assess</span><span class="p">[</span><span class="n">assess</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][[</span><span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;id_assessment&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">]]</span>
+<span class="n">wd2</span> <span class="o">=</span> <span class="n">wd</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date_unregistration&quot;</span><span class="p">])</span>
+
+<span class="c1"># 이탈 학생 각각에게 그 강좌의 weight&gt;0 과제를 전부 대응시킵니다.</span>
+<span class="n">merged_check</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">wd2</span><span class="p">,</span> <span class="n">assess_w</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;after_withdrawal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;date_unregistration&quot;</span><span class="p">]</span>
+
+<span class="c1"># 실제로 제출했는지 여부(둘 다 True인 조합의 집합)</span>
+<span class="n">sub_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">]))</span>
+<span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">],</span> <span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">]))</span>
+<span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_keys</span><span class="p">)</span>
+
+<span class="c1"># &quot;안 낸 것&quot;으로 집계된 과제 중, 탈퇴일 이전/이후 마감 비율을 확인합니다.</span>
+<span class="n">missed</span> <span class="o">=</span> <span class="n">merged_check</span><span class="p">[</span><span class="o">~</span><span class="n">merged_check</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이탈 학생의 &#39;미제출&#39; 과제-건수:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">missed</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이 중 마감일이 탈퇴일보다 나중(=낼 기회 자체가 없었음):&quot;</span><span class="p">,</span>
+      <span class="n">missed</span><span class="p">[</span><span class="s2">&quot;after_withdrawal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">&quot;건 (&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">missed</span><span class="p">[</span><span class="s2">&quot;after_withdrawal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;%)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이 중 마감일이 탈퇴일 이전(=아직 재학 중인데 실제로 안 낸 것):&quot;</span><span class="p">,</span>
+      <span class="p">(</span><span class="o">~</span><span class="n">missed</span><span class="p">[</span><span class="s2">&quot;after_withdrawal&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">&quot;건 (&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">((</span><span class="o">~</span><span class="n">missed</span><span class="p">[</span><span class="s2">&quot;after_withdrawal&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;%)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>이탈 학생의 &#x27;미제출&#x27; 과제-건수: 69262
+이 중 마감일이 탈퇴일보다 나중(=낼 기회 자체가 없었음): 54335 건 ( 78.4 %)
+이 중 마감일이 탈퇴일 이전(=아직 재학 중인데 실제로 안 낸 것): 14927 건 ( 21.6 %)
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-check"><div class="callout-tag">확인 결과</div><p><strong>[확인 결과]</strong> 이탈 학생의 "미제출" 과제 중 <strong>78.4%는 탈퇴일 이후에 마감</strong>된 것이었습니다. 즉
+5-3의 57.4%(제출률 0%)에는 실제로 게을러서 안 낸 경우뿐 아니라, <strong>강좌를 이미 떠나서 물리적으로
+낼 수 없었던 경우가 상당수 섞여 있습니다.</strong> 원래 수치는 이탈-제출률 관계를 과장했을 가능성이
+높으므로, 탈퇴일 이후 마감 과제는 제외하고 다시 계산합니다.</p></div></div>
+<div class="code-cell" id="cell-17">
+  <div class="code-intro">완수 그룹: 강좌를 끝까지 들었으므로 모든 과제에 &#x27;낼 기회&#x27;가 있었다고 봅니다. 이탈 그룹: 탈퇴일 이전에 마감된 과제만 &#x27;낼 기회&#x27;가 있었다고 보고, 그 범위 내에서만 제출률을 계산합니다. (date_unregistration이 없는 93명은 판단 불가하므로 이 보정 비교에서는 제외합니다)</div>
+  <details class="code-details">
+    <summary>코드 보기</summary>
+    <div class="highlight-wrap"><div class="highlight"><pre><span></span><span class="c1"># 완수 그룹: 강좌를 끝까지 들었으므로 모든 과제에 &#39;낼 기회&#39;가 있었다고 봅니다.</span>
+<span class="c1"># 이탈 그룹: 탈퇴일 이전에 마감된 과제만 &#39;낼 기회&#39;가 있었다고 보고, 그 범위 내에서만 제출률을 계산합니다.</span>
+<span class="c1"># (date_unregistration이 없는 93명은 판단 불가하므로 이 보정 비교에서는 제외합니다)</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">info</span><span class="p">[[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;label_churn&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">reg</span><span class="p">[[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;date_unregistration&quot;</span><span class="p">]],</span>
+                <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">base_fair</span> <span class="o">=</span> <span class="n">base</span><span class="p">[</span><span class="o">~</span><span class="p">((</span><span class="n">base</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;이탈&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="s2">&quot;date_unregistration&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()))]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">base_fair</span><span class="p">,</span> <span class="n">assess_w</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">exp</span><span class="p">[</span><span class="s2">&quot;had_chance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;완수&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">exp</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">exp</span><span class="p">[</span><span class="s2">&quot;date_unregistration&quot;</span><span class="p">])</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[</span><span class="n">exp</span><span class="p">[</span><span class="s2">&quot;had_chance&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">exp</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="s2">&quot;id_student&quot;</span><span class="p">],</span> <span class="n">exp</span><span class="p">[</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">]))</span>
+<span class="n">exp</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sub_keys</span><span class="p">)</span>
+
+<span class="n">fair</span> <span class="o">=</span> <span class="n">exp</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;id_student&quot;</span><span class="p">,</span> <span class="s2">&quot;code_module&quot;</span><span class="p">,</span> <span class="s2">&quot;code_presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;label_churn&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">expected_fair</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;id_assessment&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">),</span>
+    <span class="n">submitted_fair</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;was_submitted&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">fair</span><span class="p">[</span><span class="s2">&quot;submission_rate_fair&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fair</span><span class="p">[</span><span class="s2">&quot;submitted_fair&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">fair</span><span class="p">[</span><span class="s2">&quot;expected_fair&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[탈퇴 시점 보정] 완수/이탈 그룹별 제출률:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fair</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;label_churn&quot;</span><span class="p">)[</span><span class="s2">&quot;submission_rate_fair&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">zero_fair</span> <span class="o">=</span> <span class="n">fair</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;label_churn&quot;</span><span class="p">)[</span><span class="s2">&quot;submission_rate_fair&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">제출률 0%인 학생 비율(보정 후):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zero_fair</span><span class="p">)</span>
+
+<span class="c1"># 탈퇴일 이전에 마감된 과제 자체가 하나도 없는(=판단 대상에서 완전히 빠지는) 이탈 학생 비율</span>
+<span class="n">n_withdrawn_total</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_fair</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;이탈&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">n_withdrawn_in_fair</span> <span class="o">=</span> <span class="p">(</span><span class="n">fair</span><span class="p">[</span><span class="s2">&quot;label_churn&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;이탈&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">이탈 학생 중 &#39;탈퇴 전 마감된 weight&gt;0 과제가 아예 없었던&#39; 학생 비율:&quot;</span><span class="p">,</span>
+      <span class="nb">round</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">n_withdrawn_in_fair</span> <span class="o">/</span> <span class="n">n_withdrawn_total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">n_withdrawn_total</span> <span class="o">-</span> <span class="n">n_withdrawn_in_fair</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">n_withdrawn_total</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+  </details>
+  <div class="output-area"><div class="stream-block"><span class="block-label">Output</span><pre>[탈퇴 시점 보정] 완수/이탈 그룹별 제출률:
+             mean  median  count
+label_churn                     
+완수           62.3    80.0  22437
+이탈           55.7    60.0   5174
+
+제출률 0%인 학생 비율(보정 후):
+label_churn
+완수    15.8
+이탈    21.4
+Name: submission_rate_fair, dtype: float64
+
+이탈 학생 중 &#x27;탈퇴 전 마감된 weight&gt;0 과제가 아예 없었던&#x27; 학생 비율: 48.6 % (4889 / 10063)
+</pre></div></div>
+  
+</div>
+<div class="md-cell"><div class="callout callout-conclusion"><div class="callout-tag">결론</div><p><strong>[보정된 결론]</strong> 탈퇴일 이후 마감 과제를 제외하고 다시 보면, 격차는 크게 줄어듭니다.</p></div>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>완수</th>
+<th>이탈(원본, 미보정)</th>
+<th>이탈(탈퇴시점 보정)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>평균 제출률</td>
+<td>62.3%</td>
+<td>13.6%</td>
+<td><strong>55.7%</strong></td>
+</tr>
+<tr>
+<td>중앙값</td>
+<td>80%</td>
+<td>0%</td>
+<td><strong>60%</strong></td>
+</tr>
+<tr>
+<td>제출률 0%인 비율</td>
+<td>15.8%</td>
+<td>57.4%</td>
+<td><strong>21.4%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>즉 원래 발견(완수 62.3% vs 이탈 13.6%)의 상당 부분은 "이탈 학생은 애초에 강좌를 끝까지
+안 들어서 낼 과제 자체가 줄어든다"는 <strong>기계적인 효과</strong>였습니다. 낼 기회가 있었던 과제만 놓고
+비교하면 완수 62.3% vs 이탈 55.7%로 차이가 훨씬 작아지지만(약 6.6%p), 제출률 0%인 학생 비율은
+여전히 완수(15.8%)보다 이탈(21.4%)이 높아서 <strong>진짜 행동 차이도 일부 존재</strong>하는 것으로 보입니다.</p>
+<div class="callout callout-finding"><div class="callout-tag">발견</div><p><strong>추가로 중요한 발견</strong>: 이탈 학생의 <strong>48.6%는 탈퇴 시점까지 마감된 weight&gt;0 과제가 단 하나도
+없었습니다.</strong> 즉 이탈 학생 중 거의 절반은 "첫 과제 제출 여부"조차 확인하기 전에 이미 강좌를
+떠났다는 뜻입니다.</p></div>
+<div class="callout callout-conclusion"><div class="callout-tag">결론</div><p><strong>[결론 — 고용노동부 훈련과정 적용 시 시사점 수정]</strong>
+1. 과제 제출률은 여전히 이탈과 관련이 있지만, 원래 예상(4배 차이)만큼 극적이지는 않습니다(보정
+   후 약 1.4배). "미제출"을 조기경보 지표로 쓰려면 반드시 등록 후 경과일 대비 정상적으로 마감된
+   과제 개수를 기준으로 삼아야 하며, 그렇지 않으면 이탈 위험을 과대평가하게 됩니다.
+2. 이탈 학생의 절반 가까이가 <strong>첫 과제 마감 전에 이미 이탈</strong>하므로, 과제 제출 여부만으로는
+   포착할 수 없는 조기 이탈군이 상당히 많습니다. 이 그룹은 vle.csv(학습 활동 로그) 분석에서
+   등록 직후의 로그인/클릭 패턴으로 접근하는 것이 더 적절할 수 있습니다.</p></div></div>
+<div class="code-cell" id="cell-18">
+  
+  
+  
+  
+</div>
+    <div class="summary-box">
+      <h2>이 노트북에서 꼭 기억할 점</h2>
+      <ul>
+        <li>이탈 그룹의 평균 과제 점수(64.9점)는 완수 그룹(75.8점)보다 약 11점 낮고, 지연 제출 비율(47.0%)도 더 높습니다.</li>
+        <li>처음 관찰된 제출률 격차(완수 62.3% vs 이탈 13.6%, 약 4.6배)는 대부분 &quot;탈퇴 이후 마감된 과제까지 미제출로 집계된&quot; 착시였습니다 — 탈퇴 시점 보정 후 격차는 62.3% vs 55.7%(약 1.1배)로 크게 줄어듭니다.</li>
+        <li>그럼에도 제출률 0%인 학생 비율은 완수(15.8%)보다 이탈(21.4%)이 여전히 높아, 실제 행동 차이도 일부 존재합니다.</li>
+        <li>이탈 학생의 48.6%는 첫 과제 마감 전에 이미 이탈했습니다 — 과제 데이터만으로는 포착할 수 없는 초조기 이탈군이 상당히 많습니다.</li>
+      </ul>
+    </div>
+    <div class="footer-note">Generated from 03_EDA_Assessments_StAssessment.ipynb</div>
+  </main>
+</div>
+</body>
+</html>
