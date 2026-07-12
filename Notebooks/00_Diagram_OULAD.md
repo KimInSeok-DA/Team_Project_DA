@@ -58,9 +58,12 @@ class vle {
    integer id_site
 }
 
+assessments  -->  courses : code_module, code_presentation
 studentassessment  -->  assessments : id_assessment
 studentinfo  -->  courses : code_module, code_presentation
 studentregistration  -->  courses : code_module, code_presentation
+studentregistration  -->  studentinfo : code_module, code_presentation, id_student
 studentvle  -->  courses : code_module, code_presentation
 studentvle  -->  studentinfo : code_module, code_presentation, id_student
 studentvle  -->  vle : id_site
+vle  -->  courses : code_module, code_presentation
