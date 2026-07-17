@@ -9,3 +9,8 @@ dependencies = [
     "scikit-learn>=1.9.0",
     "xgboost>=3.3.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "Notebooks/01_EDA_Basic",
+]
